@@ -12,6 +12,7 @@ export abstract class CompleterBaseData extends Subject<CompleterItem[] | null> 
     protected _titleField: string;
     protected _descriptionField: string;
     protected _imageField: string;
+    protected _imagePath = "";
 
     constructor() {
         super();
@@ -41,6 +42,11 @@ export abstract class CompleterBaseData extends Subject<CompleterItem[] | null> 
         return this;
     }
 
+    public imagePath(imagePath: string) {
+      this._imagePath = imagePath;
+      return this;
+    }
+
     public convertToItem(data: any) {
         let image: string | null = null;
         let formattedText: string;
@@ -61,7 +67,7 @@ export abstract class CompleterBaseData extends Subject<CompleterItem[] | null> 
         }
 
         if (this._imageField) {
-            image = this.extractValue(data, this._imageField);
+            image = this._imagePath + this.extractValue(data, this._imageField);
         }
 
         if (isNil(formattedText)) {
