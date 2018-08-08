@@ -30,15 +30,12 @@ export class CtrRowDirective implements CtrRowElement, OnDestroy {
     this._item = item;
   }
 
-  @HostListener('click', ['$event']) public onClick(event: any) {
-    this.dropdown.onSelected(this._item);
-  }
-
   @HostListener('mouseenter', ['$event']) public onMouseEnter(event: any) {
     this.dropdown.highlightRow(this._rowIndex);
   }
 
   @HostListener('mousedown', ['$event']) public onMouseDown(event: any) {
+    this.dropdown.onSelected(this._item);
     this.dropdown.rowMouseDown();
   }
 

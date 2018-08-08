@@ -128,6 +128,7 @@ export class CtrInputDirective {
       if (this.completer.hasHighlighted()) {
         event.preventDefault();
       }
+      this.el.nativeElement.blur();
       this.handleSelection();
     } else if (keyCode === KEY_DW) {
       event.preventDefault();
