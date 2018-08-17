@@ -1,6 +1,6 @@
 {
   "name": "edge-completer",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "packagr": "ng-packagr -p ng-package.json && cp -R src/assets dist/assets"
+    "packagr": "ng-packagr -p ng-package.json && cp -R src/assets dist/assets",
+    "packagr-win": "ng-packagr -p ng-package.json && xcopy /E src\\assets dist\\assets\\ && cd dist && rmdir /Q /S node_modules && npm pack"
   },
   "private": false,
   "dependencies": {
