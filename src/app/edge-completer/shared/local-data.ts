@@ -2,7 +2,7 @@
 
 import { EventEmitter, Injectable } from '@angular/core';
 import { CompleterBaseData } from './completer-base-data';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { CompleterItem } from './completer-item';
 
 @Injectable()

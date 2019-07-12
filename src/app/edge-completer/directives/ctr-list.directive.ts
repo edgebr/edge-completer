@@ -2,14 +2,13 @@ import {
   ChangeDetectorRef, Directive, EmbeddedViewRef, Host, Input, OnInit, TemplateRef,
   ViewContainerRef
 } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/timer';
+import { Observable ,  Subscription } from 'rxjs';
+
 import { CompleterItem } from '../shared/completer-item';
 import { CLEAR_TIMEOUT, isNil, MIN_SEARCH_LENGTH, PAUSE } from '../shared/globals';
 import { CompleterList, CtrCompleterDirective } from './ctr-completer.directive';
-import { Subscription } from 'rxjs/Subscription';
 import { CompleterData } from '../shared/completer-data';
-import 'rxjs/add/operator/catch';
+
 
 export class CtrListContext {
   constructor(

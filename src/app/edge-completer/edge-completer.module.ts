@@ -11,7 +11,7 @@ import { EdgeCompleterListItemComponent } from './edge-completer-list-item/edge-
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { CompleterService } from './shared/completer-service';
-import { LocalDataFactoryProvider, RemoteDataFactoryProvider } from './shared/completer-data-factory';
+import { LocalDataFactoryProvider } from './shared/completer-data-factory';
 
 @NgModule({
   imports: [
@@ -31,8 +31,7 @@ import { LocalDataFactoryProvider, RemoteDataFactoryProvider } from './shared/co
   ],
   providers: [
     CompleterService,
-    LocalDataFactoryProvider,
-    RemoteDataFactoryProvider
+    LocalDataFactoryProvider
   ],
   exports: [
     EdgeCompleterComponent,

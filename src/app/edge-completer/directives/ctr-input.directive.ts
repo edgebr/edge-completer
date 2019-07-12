@@ -1,11 +1,10 @@
 import { Directive, ElementRef, EventEmitter, Host, HostListener, Input, Output } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription ,  Observable } from 'rxjs';
 import { NgModel } from '@angular/forms';
 import { CtrCompleterDirective } from './ctr-completer.directive';
 import { CompleterItem } from '../shared/completer-item';
 import { isNil } from '../shared/globals';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/timer';
+
 
 
 

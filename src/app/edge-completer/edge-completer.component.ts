@@ -199,7 +199,7 @@ export class EdgeCompleterComponent implements OnInit, ControlValueAccessor, Aft
       if (source instanceof Array) {
         this.dataService = this.completerService.local(source);
       } else if (typeof (source) === 'string') {
-        this.dataService = this.completerService.remote(source);
+        throw new Error('Must be an array to be a datasource');
       } else {
         this.dataService = source;
       }
