@@ -112,10 +112,10 @@ export class EdgeCompleterComponent implements OnInit, ControlValueAccessor, Aft
   public keydown: EventEmitter<any> = new EventEmitter();
 
 
-  @ViewChild(CtrCompleterDirective)
+  @ViewChild(CtrCompleterDirective, {static: true})
   public completer: CtrCompleterDirective;
 
-  @ViewChild('ctrInput')
+  @ViewChild('ctrInput', {static: false})
   public ctrInput: ElementRef;
 
 

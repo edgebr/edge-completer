@@ -2,12 +2,13 @@ import {
   ChangeDetectorRef, Directive, EmbeddedViewRef, Host, Input, OnInit, TemplateRef,
   ViewContainerRef
 } from '@angular/core';
-import { Observable ,  Subscription } from 'rxjs';
+import { Observable ,  Subscription, timer, of } from 'rxjs';
 
 import { CompleterItem } from '../shared/completer-item';
 import { CLEAR_TIMEOUT, isNil, MIN_SEARCH_LENGTH, PAUSE } from '../shared/globals';
 import { CompleterList, CtrCompleterDirective } from './ctr-completer.directive';
 import { CompleterData } from '../shared/completer-data';
+import {catchError} from 'rxjs/operators';
 
 
 export class CtrListContext {
@@ -95,7 +96,7 @@ export class CtrListDirective implements OnInit, CompleterList {
       if (this.clearTimer) {
         this.clearTimer.unsubscribe();
       }
-      this.searchTimer = Observable.timer(this.ctrListPause).subscribe(() => {
+      this.searchTimer = timer(this.ctrListPause).subscribe(() => {
         this.searchTimerComplete(term);
       });
     } else if (!isNil(term) && term.length < this.ctrListMinSearchLength) {
@@ -108,7 +109,7 @@ export class CtrListDirective implements OnInit, CompleterList {
     if (this.searchTimer) {
       this.searchTimer.unsubscribe();
     }
-    this.clearTimer = Observable.timer(CLEAR_TIMEOUT).subscribe(() => {
+    this.clearTimer = timer(CLEAR_TIMEOUT).subscribe(() => {
       this._clear();
     });
   }
@@ -187,11 +188,11 @@ export class CtrListDirective implements OnInit, CompleterList {
   private dataServiceSubscribe() {
     if (this._dataService) {
       this._dataService
-        .catch(err => {
+        .pipe(catchError(err => {
           console.error(err);
           console.error('Unexpected error in dataService: errors should be handled by the dataService Observable');
-          return [];
-        })
+          return of([]);
+        }))
         .subscribe(results => {
           this.ctx.searchInitialized = true;
           this.ctx.searching = false;

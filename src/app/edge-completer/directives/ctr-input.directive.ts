@@ -4,7 +4,7 @@ import { NgModel } from '@angular/forms';
 import { CtrCompleterDirective } from './ctr-completer.directive';
 import { CompleterItem } from '../shared/completer-item';
 import { isNil } from '../shared/globals';
-
+import { timer } from 'rxjs';
 
 
 
@@ -170,7 +170,7 @@ export class CtrInputDirective {
     }
 
     if (this.completer.isOpen) {
-      this.blurTimer = Observable.timer(200).subscribe(() => this.doBlur());
+      this.blurTimer = timer(200).subscribe(() => this.doBlur());
     }
   }
 
