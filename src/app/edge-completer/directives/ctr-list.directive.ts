@@ -35,6 +35,9 @@ export class CtrListDirective implements OnInit, CompleterList {
   @Input()
   public ctrListDisplaySearching = true;
 
+  @Input()
+  public ctrListCd: ChangeDetectorRef;
+
   private _dataService: CompleterData;
   // private results: CompleterItem[] = [];
   private term: string | null = null;
@@ -48,8 +51,7 @@ export class CtrListDirective implements OnInit, CompleterList {
   constructor(
     @Host() private completer: CtrCompleterDirective,
     private templateRef: TemplateRef<CtrListContext>,
-    private viewContainer: ViewContainerRef,
-    private cd: ChangeDetectorRef) { }
+    private viewContainer: ViewContainerRef) { }
 
   public ngOnInit() {
     this.completer.registerList(this);
@@ -163,7 +165,7 @@ export class CtrListDirective implements OnInit, CompleterList {
       this.viewRef!.context.searchInitialized = this.ctx.searchInitialized;
       this.viewRef.detectChanges();
     }
-    this.cd.markForCheck();
+    this.ctrListCd.markForCheck();
   }
 
   private getBestMatchIndex() {

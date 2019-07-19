@@ -10,11 +10,10 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "packagr": "ng-packagr -p ng-package.json && cp -R src/assets dist/assets",
-    "packagr-win": "ng-packagr -p ng-package.json && xcopy /E src\\assets dist\\assets\\ && cd dist && rmdir /Q /S node_modules && npm pack"
+    "packagr-win": "ng-packagr -p ng-package.json && xcopy /E src\\assets dist\\assets\\ && cd dist && npm pack"
   },
   "private": false,
   "dependencies": {
-    "@angular/animations": "^8.1.1",
     "@angular/common": "^8.1.1",
     "@angular/compiler": "^8.1.1",
     "@angular/core": "^8.1.1",

@@ -87,6 +87,9 @@ export class EdgeCompleterComponent implements OnInit, ControlValueAccessor, Aft
   @Input()
   public autoHighlight = false;
 
+  @Input()
+  cdr: ChangeDetectorRef;
+
   @Output()
   public selected = new EventEmitter<CompleterItem>();
 
@@ -131,7 +134,7 @@ export class EdgeCompleterComponent implements OnInit, ControlValueAccessor, Aft
   private _open = false;
   private _searchStr = '';
 
-  constructor(private completerService: CompleterService, private cdr: ChangeDetectorRef) { }
+  constructor(private completerService: CompleterService) { }
 
   public get value(): any { return this.searchStr; };
 
