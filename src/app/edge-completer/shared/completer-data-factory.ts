@@ -1,6 +1,4 @@
 import { LocalData } from './local-data';
-import { Http } from '@angular/http';
-import { RemoteData } from './remote-data';
 
 export function localDataFactory () {
     return () => {
@@ -8,11 +6,4 @@ export function localDataFactory () {
     };
 }
 
-export function remoteDataFactory (http: Http) {
-    return () => {
-        return new RemoteData(http);
-    };
-}
-
 export let LocalDataFactoryProvider = {provide: LocalData, useFactory: localDataFactory};
-export let RemoteDataFactoryProvider = {provide: RemoteData, useFactory: remoteDataFactory, deps: [Http]};

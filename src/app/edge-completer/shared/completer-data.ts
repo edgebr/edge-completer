@@ -1,5 +1,5 @@
 import { CompleterItem } from './completer-item';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { EventEmitter } from '@angular/core';
 
 export interface CompleterData extends Observable<CompleterItem[] | null> {

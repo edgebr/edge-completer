@@ -2,7 +2,7 @@
 
 import { CompleterData } from './completer-data';
 import { CompleterItem } from './completer-item';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { isNil } from './globals';
 
 export abstract class CompleterBaseData extends Subject<CompleterItem[] | null> implements CompleterData {

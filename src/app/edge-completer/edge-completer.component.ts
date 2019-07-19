@@ -87,6 +87,9 @@ export class EdgeCompleterComponent implements OnInit, ControlValueAccessor, Aft
   @Input()
   public autoHighlight = false;
 
+  @Input()
+  cdr: ChangeDetectorRef;
+
   @Output()
   public selected = new EventEmitter<CompleterItem>();
 
@@ -112,10 +115,10 @@ export class EdgeCompleterComponent implements OnInit, ControlValueAccessor, Aft
   public keydown: EventEmitter<any> = new EventEmitter();
 
 
-  @ViewChild(CtrCompleterDirective)
+  @ViewChild(CtrCompleterDirective, {static: true})
   public completer: CtrCompleterDirective;
 
-  @ViewChild('ctrInput')
+  @ViewChild('ctrInput', {static: false})
   public ctrInput: ElementRef;
 
 
@@ -131,7 +134,7 @@ export class EdgeCompleterComponent implements OnInit, ControlValueAccessor, Aft
   private _open = false;
   private _searchStr = '';
 
-  constructor(private completerService: CompleterService, private cdr: ChangeDetectorRef) { }
+  constructor(private completerService: CompleterService) { }
 
   public get value(): any { return this.searchStr; };
 
@@ -199,7 +202,7 @@ export class EdgeCompleterComponent implements OnInit, ControlValueAccessor, Aft
       if (source instanceof Array) {
         this.dataService = this.completerService.local(source);
       } else if (typeof (source) === 'string') {
-        this.dataService = this.completerService.remote(source);
+        throw new Error('Must be an array to be a datasource');
       } else {
         this.dataService = source;
       }
